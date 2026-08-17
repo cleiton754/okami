@@ -22,24 +22,17 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
-const allowedOrigins = [
-  'https://okami-producao.studiodesignweb.com.br',
-  'https://www.okami-producao.studiodesignweb.com.br',
-  'https://okami-b6zfht45t-okami-producao.vercel.app',
-  'http://localhost:3000',
-  'http://localhost:8080',
-  'http://localhost:5000'
-];
-
 app.use((req, res, next) => {
   const origin = req.headers.origin;
 
-  if (origin && allowedOrigins.includes(origin)) {
+  if (origin) {
     res.setHeader('Access-Control-Allow-Origin', origin);
+  } else {
+    res.setHeader('Access-Control-Allow-Origin', '*');
   }
 
   res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE,OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
 
   if (req.method === 'OPTIONS') {
@@ -48,13 +41,6 @@ app.use((req, res, next) => {
 
   next();
 });
-
-app.use(cors({
-  origin: false,
-  credentials: false,
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
