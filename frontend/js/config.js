@@ -1,5 +1,5 @@
 // URL do backend em produção da Vercel.
-const defaultUrl = 'https://okami-b6zfht45t-okami-producao.vercel.app/api';
+const defaultUrl = 'https://okami-backend.vercel.app/api';
 window.OKAMI_API_URL = defaultUrl;
 const API_URL = defaultUrl.replace(/\/+$/, '');
 
