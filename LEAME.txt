@@ -1,0 +1,17 @@
+========================================================================
+SISTEMA DE GESTÃO DE PRODUÇÃO OKAMI & UNIVERSO (VERSÃO VANILLA HTML/CSS/JS)
+========================================================================
+
+ESTRUTURA DE PASTAS:
+1. `frontend/`  -> Suba TODO o conteúdo desta pasta para a Hostinger (subdomínio okami-producao.studiodesignweb.com.br).
+2. `backend/`   -> Roda no seu computador local (Node.js + XAMPP/MySQL).
+
+COMO EXECUTAR NO SEU COMPUTADOR:
+1. Abra o XAMPP e inicie o MySQL.
+2. Na pasta `backend`:
+   - Execute `npm install`
+   - Execute `npm start` (ou `node server.js`)
+3. Se quiser expor o backend local para o frontend na Hostinger:
+   - Execute `ngrok http 5000`
+   - Copie a URL gerada pelo ngrok (ex: https://xxxx.ngrok-free.app)
+   - Cole a URL no arquivo `frontend/js/config.js` na variável `API_URL`.

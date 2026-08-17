@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Sistema Okami & Universo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="dashboard.html" class="brand-logo">
+        <span style="font-size:1.5rem;">🖨️</span>
+        <span>OKAMI <span style="opacity: 0.6">&</span> UNIVERSO</span>
+        <span class="brand-badge">PRODUÇÃO</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="dashboard.html" class="nav-btn active">📊 Dashboard</a>
+        <a href="producao.html" class="nav-btn">⚙️ Produção</a>
+        <a href="historico.html" class="nav-btn">🕒 Histórico</a>
+        <a href="usuarios.html" class="nav-btn" id="nav-usuarios-link">👥 Usuários</a>
+        <button onclick="toggleTheme()" class="btn btn-secondary" id="theme-toggle-btn" style="padding: 8px 12px;">🌙 Modo Escuro</button>
+        <div id="user-info-box" style="display: flex; align-items: center; gap: 10px; margin-left: 8px;"></div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+      <div>
+        <h1 style="font-size: 1.5rem; font-weight: 800;">📊 Dashboard de Produção Okami & Universo</h1>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 2px;">Acompanhamento gerencial consolidado da papelaria</p>
+      </div>
+      <button class="btn btn-secondary" onclick="loadStats()">🔄 Atualizar Métricas</button>
+    </div>
+
+    <!-- Toolbar Filters -->
+    <div class="toolbar">
+      <input type="text" id="filter-busca" class="form-control" placeholder="Buscar por título ou nº do pedido...">
+      <select id="filter-loja" class="form-control">
+        <option value="">Todas as Lojas</option>
+        <option value="Okami">Okami</option>
+        <option value="Universo">Universo</option>
+      </select>
+      <select id="filter-produto" class="form-control">
+        <option value="">Todos os Produtos</option>
+        <option value="Bloquinho">Bloquinho</option>
+        <option value="Caderneta">Caderneta</option>
+        <option value="Agenda">Agenda</option>
+      </select>
+      <select id="filter-status" class="form-control">
+        <option value="">Todos os Status</option>
+        <option value="Aguardando Impressão">Aguardando Impressão</option>
+        <option value="Impresso">Impresso</option>
+        <option value="Cortado">Cortado</option>
+        <option value="Montado">Montado</option>
+        <option value="Pronto">Pronto</option>
+        <option value="Enviado">Enviado</option>
+      </select>
+      <input type="date" id="filter-data" class="form-control">
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div><div class="stat-value" id="stat-total-pedidos">0</div><div class="stat-label">Total de Pedidos</div></div>
+        <div class="stat-icon">📦</div>
+      </div>
+      <div class="stat-card">
+        <div><div class="stat-value" id="stat-total-bloquinhos">0</div><div class="stat-label">Bloquinhos (Unid.)</div></div>
+        <div class="stat-icon" style="color:#ec4899;background:#fce7f3;">📖</div>
+      </div>
+      <div class="stat-card">
+        <div><div class="stat-value" id="stat-total-cadernetas">0</div><div class="stat-label">Cadernetas (Unid.)</div></div>
+        <div class="stat-icon" style="color:#8b5cf6;background:#ede9fe;">📘</div>
+      </div>
+      <div class="stat-card">
+        <div><div class="stat-value" id="stat-total-agendas">0</div><div class="stat-label">Agendas (Unid.)</div></div>
+        <div class="stat-icon" style="color:#06b6d4;background:#cffafe;">📅</div>
+      </div>
+      <div class="stat-card">
+        <div><div class="stat-value" id="stat-aguardando">0</div><div class="stat-label">Aguardando Impressão</div></div>
+        <div class="stat-icon" style="color:#eab308;background:#fef9c3;">⏳</div>
+      </div>
+      <div class="stat-card">
+        <div><div className="stat-value" id="stat-impressos">0</div><div className="stat-label">Impressos</div></div>
+        <div class="stat-icon" style="color:#3b82f6;background:#dbeafe;">🖨️</div>
+      </div>
+      <div class="stat-card">
+        <div><div class="stat-value" id="stat-cortados">0</div><div class="stat-label">Cortados</div></div>
+        <div class="stat-icon" style="color:#8b5cf6;background:#f3e8ff;">✂️</div>
+      </div>
+      <div class="stat-card">
+        <div><div class="stat-value" id="stat-montados">0</div><div class="stat-label">Montados</div></div>
+        <div class="stat-icon" style="color:#f97316;background:#ffedd5;">📑</div>
+      </div>
+      <div class="stat-card">
+        <div><div class="stat-value" id="stat-prontos">0</div><div class="stat-label">Prontos</div></div>
+        <div class="stat-icon" style="color:#10b981;background:#d1fae5;">✅</div>
+      </div>
+      <div class="stat-card">
+        <div><div class="stat-value" id="stat-enviados">0</div><div class="stat-label">Enviados</div></div>
+        <div class="stat-icon" style="color:#06b6d4;background:#cffafe;">🚚</div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
