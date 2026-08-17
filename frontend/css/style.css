@@ -260,9 +260,117 @@ body {
   gap: 10px;
 }
 
-@media (max-width: 900px) {
+/* ── TABLET ≤ 1100px ── */
+@media (max-width: 1100px) {
+  .navbar-inner {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .toolbar {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .toolbar input[type="text"] {
+    grid-column: 1 / -1;
+  }
+  .stats-summary-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .kanban-board {
+    grid-template-columns: repeat(3, minmax(240px, 1fr));
+  }
+}
+
+/* ── TABLET ≤ 768px ── */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 14px;
+  }
+  .brand-logo {
+    font-size: 1rem;
+  }
+  .brand-badge {
+    display: none;
+  }
+  .nav-links {
+    gap: 4px;
+  }
+  .nav-btn {
+    padding: 6px 10px;
+    font-size: 0.78rem;
+  }
+  .main-content {
+    padding: 14px 12px;
+  }
+  .stats-summary-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .stat-card-compact .stat-value {
+    font-size: 1.1rem;
+  }
+  .stat-card-compact .stat-label {
+    font-size: 0.68rem;
+  }
+  .stat-icon-sm {
+    display: none;
+  }
   .toolbar {
     grid-template-columns: 1fr 1fr;
+    padding: 10px 12px;
+  }
+  .toolbar input[type="text"] {
+    grid-column: 1 / -1;
+  }
+  .kanban-board {
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+  }
+  .modal-content {
+    padding: 16px;
+    max-height: 95vh;
+  }
+}
+
+/* ── MOBILE ≤ 480px ── */
+@media (max-width: 480px) {
+  .navbar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav-links {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    flex-wrap: nowrap;
+  }
+  .nav-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .stats-summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .toolbar {
+    grid-template-columns: 1fr;
+  }
+  .toolbar input[type="text"] {
+    grid-column: auto;
+  }
+  .kanban-board {
+    grid-template-columns: repeat(1, minmax(260px, 1fr));
+  }
+  .modal-content {
+    padding: 14px;
+    border-radius: 10px;
+    max-height: 98vh;
+  }
+  .btn {
+    padding: 8px 12px;
+    font-size: 0.8rem;
   }
 }
 
