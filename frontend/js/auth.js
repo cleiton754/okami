@@ -21,7 +21,7 @@ function checkAuth(requireAdmin = false) {
 
   if (requireAdmin && user.cargo !== 'admin') {
     alert('Acesso negado. Esta página é exclusiva para Administradores.');
-    window.location.href = 'dashboard.html';
+    window.location.href = 'producao.html';
     return null;
   }
 

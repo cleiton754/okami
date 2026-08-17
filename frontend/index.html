@@ -81,7 +81,7 @@
 
         localStorage.setItem('okami_token', res.token);
         localStorage.setItem('okami_user', JSON.stringify(res.usuario));
-        window.location.href = 'dashboard.html';
+        window.location.href = 'producao.html';
       } catch (err) {
         errBox.textContent = err.message || 'Erro ao fazer login.';
         errBox.style.display = 'block';
